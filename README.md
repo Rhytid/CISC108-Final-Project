@@ -9,9 +9,14 @@ the game will get faster and the level will become bigger in scale
 the first level will have the user jumping over spikes and the last level will have the user jumping over buildings
 
 Phase 1
-- [ ] The character can be seen on screen
-- [ ] The character can be moved up with the click of a spacebar
-- [ ] We have level designs for all the levels
+- [x] The character can be seen on screen
+- [x] The character can be moved up with the click of a spacebar
+- [x] We have level plans for all the levels that are an emoji in Designer
+      - First Level: Bug Obstacle
+      - Second Level: Rock Obstacle
+      - Third Level: Baby Obstacle
+      - Fourth Level: Dog Obstacle
+      - Fifth Level: Cloud Obstacle
 
 
 Phase 2
@@ -24,3 +29,4 @@ Phase 3
 - [ ] The game displays points
 - [ ] The game transitions between levels
 - [ ] The game can be started at any level
+- [ ] (Maybe)Have items that float up like balloons in the background for cloud level
