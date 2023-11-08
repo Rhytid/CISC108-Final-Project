@@ -46,7 +46,7 @@ def space_released(world: World):
 def game_loop(world: World):
     """Allows the game to have continuous movement of the bird"""
     movement(world)
-=======
+
   
 
 
