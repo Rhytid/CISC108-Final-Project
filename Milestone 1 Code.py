@@ -10,6 +10,7 @@ class World:
     in_space: bool
 
 
+
 def create_playericon() -> DesignerObject:
     """Creates the bird icon for the player"""
     bird = emoji("bird")
@@ -45,6 +46,11 @@ def space_released(world: World):
 def game_loop(world: World):
     """Allows the game to have continuous movement of the bird"""
     movement(world)
+=======
+  
+
+
+
 
 
 # when('updating', constant_movement)
