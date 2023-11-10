@@ -18,7 +18,7 @@ Phase 1
       - Fourth Level: Dog Obstacle
       - Fifth Level: Cloud Obstacle
 
-Milestone 1 Progress: https://youtu.be/1QiYjZbeXc4
+Milestone 1 Progress: https://youtu.be/TAqs9JGkhRY
 
 
 Phase 2
