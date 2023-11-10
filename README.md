@@ -18,6 +18,8 @@ Phase 1
       - Fourth Level: Dog Obstacle
       - Fifth Level: Cloud Obstacle
 
+Milestone 1 Progress: https://youtu.be/1QiYjZbeXc4
+
 
 Phase 2
 - [ ] The first level is fully functional
