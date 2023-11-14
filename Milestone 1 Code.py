@@ -55,10 +55,6 @@ def game_loop(world: World):
         world.obstacle_speed += 1
         world.timer = time.time()
 
-  
-
-
-
 
 
 # when('updating', constant_movement)
