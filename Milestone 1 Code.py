@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from designer import *
 from random import randint
+import time
 
 
 @dataclass
@@ -8,6 +9,8 @@ class World:
     obstacle_speed: int
     player_icon: DesignerObject
     in_space: bool
+    timer: float
+
 
 
 
@@ -32,7 +35,7 @@ def movement(world: World):
 def create_world()->World:
     """Creates the world for game"""
     player_icon = create_playericon()
-    return World(5, player_icon,False)
+    return World(5, player_icon,False, time.time())
 
 
 def jump(world: World):
@@ -46,6 +49,11 @@ def space_released(world: World):
 def game_loop(world: World):
     """Allows the game to have continuous movement of the bird"""
     movement(world)
+
+    passing_time = time.time() - world.timer
+    if passing_time > 100:
+        world.obstacle_speed += 1
+        world.timer = time.time()
 
   
 
