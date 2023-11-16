@@ -9,7 +9,7 @@ class World:
     obstacle_speed: int
     player_icon: DesignerObject
     in_space: bool
-    bugs: list[DesignerObject]
+    obstacles: list[DesignerObject]
     timer: float
 
 
@@ -53,8 +53,8 @@ def game_loop(world: World):
 
 def collision(world:World)->bool:
     collides = False
-    for bug in world.bugs:
-        if colliding(bug, world.player_icon):
+    for obstacle in world.obstacles:
+        if colliding(obstacle, world.player_icon):
             collides = True
     return collides
             
@@ -65,39 +65,36 @@ def obstacle_spawn():
     bug.scale_y = 1
    # bug.anchor = 'midbottom'
     bug.x = get_width()
-    bug.y = randint(0,get_height())
+    bug.y =   randint(0,get_height())
     return bug
 
     
+def obstacles(world:World):   
+    if len(world.obstacles) < 1:
+        world.obstacles.append(obstacle_spawn())
+    
+    
 def obstacle_movement(world:World):
+    """Moves the obstacles"""
+    for obstacle in world.obstacles:
+        obstacle.x -= world.obstacle_speed
+
+def obstacle_deletion(world:World):
+    """Removes excess obstacles"""
+    newlist = []
+    for obstacle in world.obstacles:
+        if obstacle.x >10 :
+            newlist.append(obstacle)
+        else:
+            destroy(obstacle)
+    world.obstacles = newlist
+    
+def speed_up(world:World):
+    """Speeds up the obstacles"""
     passing_time = time.time() - world.timer
     print (passing_time)
-    newlist = []
-    oglist = []
-    newlist.append(int(passing_time))
-    
-    
-    if ((passing_time))%2==0:
-        world.bugs.append(obstacle_spawn())
-    
-    newlist = []
-    
-    
-def bug_movement(world:World):
-    for bug in world.bugs:
-        bug.x -= world.obstacle_speed
-
-def bug_deletion(world:World):
-    """Removes excess bugs"""
-    newlist = []
-    for bug in world.bugs:
-        if bug.x >10 :
-            newlist.append(bug)
-        else:
-            destroy(bug)
-    world.bugs = newlist
-    
-    
+    if int(passing_time)%5 == 0 and int(passing_time) > 3:
+        world.obstacle_speed += .01
 
 
 # when('updating', constant_movement)
@@ -105,9 +102,10 @@ when("typing", jump)
 when('starting', create_world)
 when("typing", space_released)
 when("updating", game_loop)
-when("updating", obstacle_movement)
+when("updating",obstacle_deletion)
 when("updating",movement)
-when("updating",bug_movement)
-when("updating",bug_deletion)
+when("updating",obstacle_movement)
+when("updating", obstacles)
+when("updating", speed_up)
 when(collision, pause)
 start()
