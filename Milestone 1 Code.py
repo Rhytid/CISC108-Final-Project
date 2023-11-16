@@ -3,7 +3,6 @@ from designer import *
 from random import randint
 import time
 
-
 @dataclass
 class World:
     obstacle_speed: int
@@ -11,8 +10,6 @@ class World:
     in_space: bool
     obstacles: list[DesignerObject]
     timer: float
-
-
 
 def create_playericon() -> DesignerObject:
     """Creates the bird icon for the player"""
@@ -22,89 +19,86 @@ def create_playericon() -> DesignerObject:
     bird.flip_x = True
     return bird
 
-
 def movement(world: World):
     """Makes sure that the world is constantly moving"""
     if world.in_space:
-        world.player_icon.y -= 100
+        world.player_icon.y -= 100  
     else:
         world.player_icon.y += 2
 
-
 def create_world() -> World:
-    """Creates the world for game"""
+    """Creates the world for the game"""
     player_icon = create_playericon()
     return World(5, player_icon, False, [], time.time())
 
-
-
-
 def jump(world: World):
+    """Allows the Bird to fly up into the air"""
     world.in_space = True
     world.player_icon.y -= 50
 
 def space_released(world: World):
-    """ Allows the bird to fall when "space" key is released (user stops pressing "space" key"""
+    """Allows the bird to fall when the "space" key is released"""
     world.in_space = False
 
 def game_loop(world: World):
     """Allows the game to have continuous movement of the bird"""
     movement(world)
+    if collision(world):
+        world.in_space = False  
+        world.player_icon.y = max(0, world.player_icon.y)  
+        pause()
 
-def collision(world:World)->bool:
+def collision(world: World) -> bool:
+    """ Makes the bird pause and stop the game with it collides with the obstacles or edge of the screen"""
     collides = False
     for obstacle in world.obstacles:
-        if colliding(obstacle, world.player_icon):
+        if colliding(obstacle, world.player_icon) or world.player_icon.y <= 0:
             collides = True
     return collides
-            
 
 def obstacle_spawn():
+    """ Creation of the icons that will be the obstacle"""
     bug = emoji('bug')
     bug.scale_x = 1
     bug.scale_y = 1
-   # bug.anchor = 'midbottom'
     bug.x = get_width()
-    bug.y =   randint(0,get_height())
+    bug.y = randint(0, get_height())
     return bug
 
-    
-def obstacles(world:World):   
+def obstacles(world: World):
+    """Creating the obstacle that the player icon will have to avoid hitting"""
     if len(world.obstacles) < 1:
         world.obstacles.append(obstacle_spawn())
-    
-    
-def obstacle_movement(world:World):
+
+def obstacle_movement(world: World):
     """Moves the obstacles"""
     for obstacle in world.obstacles:
         obstacle.x -= world.obstacle_speed
 
-def obstacle_deletion(world:World):
+def obstacle_deletion(world: World):
     """Removes excess obstacles"""
     newlist = []
     for obstacle in world.obstacles:
-        if obstacle.x >10 :
+        if obstacle.x > 10:
             newlist.append(obstacle)
         else:
             destroy(obstacle)
     world.obstacles = newlist
-    
-def speed_up(world:World):
+
+def speed_up(world: World):
     """Speeds up the obstacles"""
     passing_time = time.time() - world.timer
-    print (passing_time)
-    if int(passing_time)%5 == 0 and int(passing_time) > 3:
-        world.obstacle_speed += .01
+    if int(passing_time) % 5 == 0 and int(passing_time) > 3:
+        world.obstacle_speed += 0.01
+        
 
-
-# when('updating', constant_movement)
 when("typing", jump)
 when('starting', create_world)
 when("typing", space_released)
 when("updating", game_loop)
-when("updating",obstacle_deletion)
-when("updating",movement)
-when("updating",obstacle_movement)
+when("updating", obstacle_deletion)
+when("updating", movement)
+when("updating", obstacle_movement)
 when("updating", obstacles)
 when("updating", speed_up)
 when(collision, pause)
