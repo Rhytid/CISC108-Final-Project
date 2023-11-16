@@ -22,9 +22,9 @@ Milestone 1 Progress: https://youtu.be/TAqs9JGkhRY
 
 
 Phase 2
-- [ ] The first level is fully functional
-- [ ] The game gets faster as you progress
-- [ ] The game can tell when the player collides with obstacles
+- [x] The first level is fully functional
+- [x] The game gets faster as you progress
+- [x] The game can tell when the player collides with obstacles
 
 
 Phase 3
