@@ -26,6 +26,7 @@ Phase 2
 - [x] The game gets faster as you progress
 - [x] The game can tell when the player collides with obstacles
 
+Milestone 2 Progress: https://youtu.be/mKVKGLP9GOs 
 
 Phase 3
 - [ ] The game displays points
