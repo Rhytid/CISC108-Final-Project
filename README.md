@@ -19,7 +19,7 @@ Phase 1
       - Fifth Level: Cloud Obstacle
 
 Milestone 1 Progress: https://youtu.be/TAqs9JGkhRY
-
+Milestone 2 Progress: https://youtu.be/cPYrNH9Ra8I
 
 Phase 2
 - [x] The first level is fully functional
