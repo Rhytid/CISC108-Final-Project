@@ -21,7 +21,7 @@ def create_playericon() -> DesignerObject:
     bird.flip_x = True
     return bird
 
-def movement(world: World):
+def player_movement(world: World):
     """Makes sure that the world is constantly moving"""
     if world.in_space:
         world.player_icon.y -= 100  
@@ -44,7 +44,7 @@ def space_released(world: World):
 
 def game_loop(world: World):
     """Allows the game to have continuous movement of the bird"""
-    movement(world)
+    player_movement(world)
     if collision(world):
         world.in_space = False  
         world.player_icon.y = max(0, world.player_icon.y)  
@@ -54,7 +54,9 @@ def collision(world: World) -> bool:
     """ Makes the bird pause and stop the game with it collides with the obstacles or edge of the screen"""
     collides = False
     for obstacle in world.obstacles:
-        if colliding(obstacle, world.player_icon) or world.player_icon.y <= 0:
+        if colliding(obstacle, world.player_icon):
+            collides = True
+        if (world.player_icon.y <=0 or world.player_icon.y >= 600):
             collides = True
     return collides
 
@@ -101,20 +103,23 @@ def obstacle_deletion(world: World):
     
 
 
-        
 def display_points(world):
     """Show the point value"""
     world.counter.text = "Points: " + str(world.point)
+    print(world.player_icon.y)
     
-           
+def game_over(world):
+    """ Show the game over message """
+    world.counter.text = "GAME OVER! Your score was " + str(world.point)
+
 when("typing", jump)
 when('starting', create_world)
 when("typing", space_released)
 when("updating", game_loop)
 when("updating", obstacle_deletion)
-when("updating", movement)
+when("updating", player_movement)
 when("updating", obstacle_movement)
 when("updating", obstacles)
 when("updating", display_points)
-when(collision, pause)
+when(collision, game_over, pause)
 start()
