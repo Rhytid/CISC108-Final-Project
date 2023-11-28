@@ -56,19 +56,29 @@ def collision(world: World) -> bool:
             collides = True
     return collides
 
-def obstacle_spawn():
+def obstacle_spawn(world:World):
     """ Creation of the icons that will be the obstacle"""
-    bug = emoji('bug')
-    bug.scale_x = 1
-    bug.scale_y = 1
-    bug.x = get_width()
-    bug.y = randint(0, get_height())
-    return bug
+    if world.obstacle_speed > 10:
+        obstacle = emoji('rock')
+    elif world.obstacle_speed > 15:
+        obstacle = emoji("baby")
+    elif world.obstacle_speed > 20:
+        obstacle = emoji("dog")
+    elif world.obstacle_speed > 25:
+        obstacle = emoji("cloud")
+    else:
+        obstacle = emoji("bug")
+    
+    obstacle.scale_x = 1
+    obstacle.scale_y = 1
+    obstacle.x = get_width()
+    obstacle.y = randint(0, get_height())
+    return obstacle
 
 def obstacles(world: World):
     """Creating the obstacle that the player icon will have to avoid hitting"""
     if len(world.obstacles) < 1:
-        world.obstacles.append(obstacle_spawn())
+        world.obstacles.append(obstacle_spawn(world))
 
 def obstacle_movement(world: World):
     """Moves the obstacles"""
