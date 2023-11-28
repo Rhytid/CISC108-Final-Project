@@ -32,7 +32,7 @@ def player_movement(world: World):
 def create_world() -> World:
     """Creates the world for the game"""
     player_icon = create_playericon()
-    return World(5, player_icon, False, [], time.time(), 25, text("black"," 0",20,400,65), [])
+    return World(5, player_icon, False, [], time.time(), 0, text("black"," 0",20,400,65), [])
 
 def jump(world: World):
     """Allows the Bird to fly up into the air"""
