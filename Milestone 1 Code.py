@@ -10,6 +10,8 @@ class World:
     in_space: bool
     obstacles: list[DesignerObject]
     timer: float
+    point: int
+    counter: DesignerObject
 
 def create_playericon() -> DesignerObject:
     """Creates the bird icon for the player"""
@@ -29,7 +31,7 @@ def movement(world: World):
 def create_world() -> World:
     """Creates the world for the game"""
     player_icon = create_playericon()
-    return World(5, player_icon, False, [], time.time())
+    return World(5, player_icon, False, [], time.time(), 0, text("black"," 0",20,400,65))
 
 def jump(world: World):
     """Allows the Bird to fly up into the air"""
@@ -58,13 +60,13 @@ def collision(world: World) -> bool:
 
 def obstacle_spawn(world:World):
     """ Creation of the icons that will be the obstacle"""
-    if world.obstacle_speed > 10:
+    if 10>world.point >= 5:
         obstacle = emoji('rock')
-    elif world.obstacle_speed > 15:
+    elif 15>world.point >= 10:
         obstacle = emoji("baby")
-    elif world.obstacle_speed > 20:
+    elif 20>world.point >= 15:
         obstacle = emoji("dog")
-    elif world.obstacle_speed > 25:
+    elif world.obstacle_speed >= 20:
         obstacle = emoji("cloud")
     else:
         obstacle = emoji("bug")
@@ -93,15 +95,18 @@ def obstacle_deletion(world: World):
             newlist.append(obstacle)
         else:
             destroy(obstacle)
+            world.point += 1
+            world.obstacle_speed += 1.5
     world.obstacles = newlist
+    
 
-def speed_up(world: World):
-    """Speeds up the obstacles"""
-    passing_time = time.time() - world.timer
-    if int(passing_time) % 5 == 0 and int(passing_time) > 3:
-        world.obstacle_speed += 0.01
+
         
-
+def display_points(world):
+    """Show the point value"""
+    world.counter.text = "Points: " + str(world.point)
+    
+           
 when("typing", jump)
 when('starting', create_world)
 when("typing", space_released)
@@ -110,6 +115,6 @@ when("updating", obstacle_deletion)
 when("updating", movement)
 when("updating", obstacle_movement)
 when("updating", obstacles)
-when("updating", speed_up)
+when("updating", display_points)
 when(collision, pause)
 start()
