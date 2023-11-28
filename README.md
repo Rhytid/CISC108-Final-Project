@@ -30,6 +30,6 @@ Phase 2
 
 Phase 3
 - [ ] The game displays points
-- [ ] The game transitions between levels
-- [ ] The game can be started at any level
+- [x] The game transitions between levels
+- [ ] Potentially have a background
 - [ ] (Maybe)Have items that float up like balloons in the background for cloud level
