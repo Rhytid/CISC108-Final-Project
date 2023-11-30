@@ -1,8 +1,12 @@
 # Sky Sprint
+
+**Creators**
 Alexander Sohn
 asohn@udel.edu
-partner: Nareen Sulatana
+
+Nareen Sulatana
 <nareen@udel.edu>
+
 Pitch:
 An endless runner where as the user gets more points by jumping over more objects
 the game will get faster and the level will change to different obstacles as the game
