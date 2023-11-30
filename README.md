@@ -1,4 +1,4 @@
-# CISC108-Final-Project
+# Sky Sprint
 Alexander Sohn
 asohn@udel.edu
 partner: Nareen Sulatana
