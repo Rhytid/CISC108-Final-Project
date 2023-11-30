@@ -1,13 +1,5 @@
 # Sky Sprint
 
-**Creators**
-
-Alexander Sohn
-asohn@udel.edu
-
-Nareen Sulatana
-<nareen@udel.edu>
-
 Pitch:
 An endless runner where as the user gets more points by jumping over more objects
 the game will get faster and the level will change to different obstacles as the game
@@ -59,4 +51,6 @@ Phase 3
 - [x] The game displays points
 - [x] The game transitions between levels
 - [x] Have all the levels completed
-- [ ] Have the game display "Game Over" when the player loses
+- [x] The higher the level the player reaches, balloons will come that float up
+- [x] The amount of balloons that come increase as the player's level increases
+- [x] Have the game display "Game Over" when the player loses
