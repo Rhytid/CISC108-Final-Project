@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from designer import *
 from random import randint
-import time
 
 @dataclass
 class World:
@@ -9,7 +8,6 @@ class World:
     player_icon: DesignerObject
     in_space: bool
     obstacles: list[DesignerObject]
-    timer: float
     point: int
     counter: DesignerObject
     balloons: list[DesignerObject]
@@ -36,7 +34,7 @@ def player_movement(world: World):
 def create_world() -> World:
     """Creates the world for the game"""
     player_icon = create_playericon()
-    return World(5, player_icon, False, [], time.time(), 0, text("black"," 0",20,400,65), [], -10, 1, 0)
+    return World(5, player_icon, False, [], 0, text("black"," 0",20,400,65), [], -10, 1, 0)
 
 def jump(world: World):
     """Allows the Bird to fly up into the air"""
@@ -61,15 +59,15 @@ def collision(world: World) -> bool:
 def generate_obstacle(world:World):
     """ Creation of the icons that will be the obstacle"""
     if 10> world.point >= 5:
-        obstacle = emoji('rock')
+        obstacle = emoji('rock') #Level 2
     elif 15>world.point >= 10:
-        obstacle = emoji("baby")
+        obstacle = emoji("baby") #Level 3
     elif 20>world.point >= 15:
-        obstacle = emoji("dog")
+        obstacle = emoji("dog") #Level 4
     elif world.point >= 20:
-        obstacle = emoji("cloud")
+        obstacle = emoji("cloud") #Level 5
     else:
-        obstacle = emoji("bug")
+        obstacle = emoji("bug") #Level 1
     
     obstacle.scale_x = 1
     obstacle.scale_y = 1
@@ -79,13 +77,13 @@ def generate_obstacle(world:World):
 
 def celebration(world:World):
     """Spawns celebratory balloons if the player makes it to the final level"""
-    if world.point >= 10:
-        if len(world.balloons) < 3:
+    if world.point >= 10: #Level 3
+        if len(world.balloons) < 3: 
             world.balloons.append(balloon_creation(world))
-    if world.point >= 15:
+    if world.point >= 15: #Level 4
         if len(world.balloons) < 8:
             world.balloons.append(balloon_creation(world))
-    if world.point >= 20:
+    if world.point >= 20: #Level 5
         if len(world.balloons) < 11:
             world.balloons.append(balloon_creation(world))
             
@@ -109,8 +107,8 @@ def obstacle_creation(world: World):
         world.obstacles.append(generate_obstacle(world))
 
 def obstacle_movement(world: World):
-    """Moves the obstacles"""
-    for obstacle in world.obstacles:
+    """Moves the obstacles""" 
+    for obstacle in world.obstacles: 
         obstacle.x -= world.obstacle_speed
 
 def obstacle_deletion(world: World):
@@ -139,7 +137,6 @@ def balloon_deletion(world:World):
 def display_points(world):
     """Show the point value"""
     world.counter.text = "Points: " + str(world.point)
-    #print(world.player_icon.y)
     
 def game_over(world):
     """ Show the game over message """
