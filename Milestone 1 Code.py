@@ -34,7 +34,7 @@ def player_movement(world: World):
 def create_world() -> World:
     """Creates the world for the game"""
     player_icon = create_playericon()
-    return World(5, player_icon, False, [], 0, text("black"," 0",20,400,65), [], -10, 1, 0)
+    return World(5, player_icon, False, [], 0, text("black"," 0",40,400,65), [], -10, 1, 0)
 
 def jump(world: World):
     """Allows the Bird to fly up into the air"""
@@ -135,12 +135,17 @@ def balloon_deletion(world:World):
 
 
 def display_points(world):
-    """Show the point value"""
-    world.counter.text = "Points: " + str(world.point)
+    """Show the point value and the title of the game"""
+    if world.point == 0:
+        world.counter.text = "Sky Sprint"
+    else:
+        
+        world.counter.text = "Points: " + str(world.point)
     
 def game_over(world):
     """ Show the game over message """
     world.counter.text = "GAME OVER! Your score was " + str(world.point)
+    
 
 when("typing", jump)
 when('starting', create_world)
