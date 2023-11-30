@@ -13,6 +13,9 @@ class World:
     point: int
     counter: DesignerObject
     balloons: list[DesignerObject]
+    jump_strength: int
+    gravity: int
+    speed: int
 
 def create_playericon() -> DesignerObject:
     """Creates the bird icon for the player"""
@@ -27,29 +30,23 @@ def player_movement(world: World):
     if world.in_space:
         world.player_icon.y -= 100  
     else:
-        world.player_icon.y += 2
+        world.player_icon.y += world.speed
+        world.speed += world.gravity
 
 def create_world() -> World:
     """Creates the world for the game"""
     player_icon = create_playericon()
-    return World(5, player_icon, False, [], time.time(), 0, text("black"," 0",20,400,65), [])
+    return World(5, player_icon, False, [], time.time(), 0, text("black"," 0",20,400,65), [], -10, 1, 0)
 
 def jump(world: World):
     """Allows the Bird to fly up into the air"""
     world.in_space = True
-    world.player_icon.y -= 50
+    world.speed = world.jump_strength
 
 def space_released(world: World):
     """Allows the bird to fall when the "space" key is released"""
     world.in_space = False
 
-def game_loop(world: World):
-    """Allows the game to have continuous movement of the bird"""
-    player_movement(world)
-    if collision(world):
-        world.in_space = False  
-        world.player_icon.y = max(0, world.player_icon.y)  
-        pause()
 
 def collision(world: World) -> bool:
     """ Makes the bird pause and stop the game with it collides with the obstacles or edge of the screen"""
@@ -82,10 +79,16 @@ def generate_obstacle(world:World):
 
 def celebration(world:World):
     """Spawns celebratory balloons if the player makes it to the final level"""
+    if world.point >= 10:
+        if len(world.balloons) < 3:
+            world.balloons.append(balloon_creation(world))
+    if world.point >= 15:
+        if len(world.balloons) < 8:
+            world.balloons.append(balloon_creation(world))
     if world.point >= 20:
         if len(world.balloons) < 11:
             world.balloons.append(balloon_creation(world))
-
+            
 def balloon_creation(world:World):
     """Creates the balloon emoji"""
     balloon = emoji("balloon")
@@ -99,6 +102,7 @@ def balloon_movement(world: World):
     """Moves the balloons"""
     for balloon in world.balloons:
         balloon.y -= randint(5,15)
+        
 def obstacle_creation(world: World):
     """Creating the obstacle that the player icon will have to avoid hitting"""
     if len(world.obstacles) < 1:
@@ -144,7 +148,6 @@ def game_over(world):
 when("typing", jump)
 when('starting', create_world)
 when("typing", space_released)
-when("updating", game_loop)
 when("updating", celebration)
 when("updating", player_movement)
 when("updating", obstacle_creation)
