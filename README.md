@@ -26,6 +26,8 @@ Nareen Sultana: nareen@udel.edu
 
 Achknowledgements:
 https://designer-edu.github.io/designer/
+Background Image: https://upload.wikimedia.org/wikipedia/commons/7/7a/Pixel_Art_Background.jpg
+
 
 Phase 1
 - [x] The character can be seen on screen
@@ -54,3 +56,4 @@ Phase 3
 - [x] The higher the level the player reaches, balloons will come that float up
 - [x] The amount of balloons that come increase as the player's level increases
 - [x] Have the game display "Game Over" when the player loses
+- [x] Add a background image set for the game
