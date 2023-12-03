@@ -12,7 +12,7 @@ If the higher the level the player reaches, the player will be greeted with ball
 to celebrate the player making it thus far, the balloons dont interact with the environment and 
 are just visual. The ballons also increase in amount as the level's get higher. 
 
-Preview:
+Game Preview: https://www.youtube.com/watch?v=Y1RHnk0HU7E
 
 
 Instructions:
@@ -57,4 +57,3 @@ Phase 3
 - [x] Have the game display "Game Over" when the player loses
 - [x] Add a background image set for the game
 
-Game Preview: https://www.youtube.com/watch?v=Y1RHnk0HU7E
