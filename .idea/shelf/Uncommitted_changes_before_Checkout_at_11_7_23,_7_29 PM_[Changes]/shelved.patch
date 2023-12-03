@@ -1,0 +1,107 @@
+Index: Milestone 1 Code.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from dataclasses import dataclass\n\n@dataclass\nclass World:\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Milestone 1 Code.py b/Milestone 1 Code.py
+--- a/Milestone 1 Code.py	
++++ b/Milestone 1 Code.py	
+@@ -1,4 +1,42 @@
+ from dataclasses import dataclass
++from designer import *
++from random import randint
++
+ 
+ @dataclass
+ class World:
++    obstacle_speed: int
++    player_icon: DesignerObject
++    in_space: bool
++
++
++def create_playericon() -> DesignerObject:
++    """Creates the bird icon for the player"""
++    bird = emoji("bird")
++    bird.y = 550
++    bird.x = 100
++    bird.flip_x = True
++    return bird
++
++
++def movement(world: World):
++    """Makes sure that bird is moving"""
++    if world.in_space:
++        world.player_icon.y -= 100
++    else:
++        world.player_icon.y += 2
++
++def create_world() -> World:
++    """Creates the world for game"""
++    return World(5, create_playericon())
++
++
++def jump(world: World, input: str):
++    if input == "space":
++        world.player_icon.y -= 15
++
++
++# when('updating', constant_movement)
++when("typing", jump)
++when('starting', create_world)
++start()
+\ No newline at end of file
+Index: tkinter_example.py
+===================================================================
+diff --git a/tkinter_example.py b/tkinter_example.py
+new file mode 100644
+--- /dev/null	
++++ b/tkinter_example.py	
+@@ -0,0 +1,8 @@
++from tkinter import *
++from tkinter import ttk
++root = Tk()
++frm = ttk.Frame(root, padding=10)
++frm.grid()
++ttk.Label(frm, text="Hello World!").grid(column=0, row=0)
++ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
++root.mainloop()
+\ No newline at end of file
+Index: pygame_example.py
+===================================================================
+diff --git a/pygame_example.py b/pygame_example.py
+new file mode 100644
+--- /dev/null	
++++ b/pygame_example.py	
+@@ -0,0 +1,29 @@
++# Simple pygame program
++
++# Import and initialize the pygame library
++import pygame
++pygame.init()
++
++# Set up the drawing window
++screen = pygame.display.set_mode([500, 500])
++
++# Run until the user asks to quit
++running = True
++while running:
++
++    # Did the user click the window close button?
++    for event in pygame.event.get():
++        if event.type == pygame.QUIT:
++            running = False
++
++    # Fill the background with white
++    screen.fill((255, 255, 255))
++
++    # Draw a solid blue circle in the center
++    pygame.draw.circle(screen, (0, 0, 255), (250, 250), 75)
++
++    # Flip the display
++    pygame.display.flip()
++
++# Done! Time to quit.
++pygame.quit()
+\ No newline at end of file

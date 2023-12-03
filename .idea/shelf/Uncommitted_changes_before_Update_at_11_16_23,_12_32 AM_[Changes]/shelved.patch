@@ -1,0 +1,20 @@
+Index: .idea/CISC108-Final-Project.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<module type=\"PYTHON_MODULE\" version=\"4\">\n  <component name=\"NewModuleRootManager\">\n    <content url=\"file://$MODULE_DIR$\" />\n    <orderEntry type=\"jdk\" jdkName=\"Python 3.10\" jdkType=\"Python SDK\" />\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\n  </component>\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/CISC108-Final-Project.iml b/.idea/CISC108-Final-Project.iml
+--- a/.idea/CISC108-Final-Project.iml	(revision 6ec573d51e82accd75b2562f7c18d14d0593f9c9)
++++ b/.idea/CISC108-Final-Project.iml	(date 1699980059696)
+@@ -5,4 +5,8 @@
+     <orderEntry type="jdk" jdkName="Python 3.10" jdkType="Python SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
++  <component name="PyDocumentationSettings">
++    <option name="format" value="PLAIN" />
++    <option name="myDocStringFormat" value="Plain" />
++  </component>
+ </module>
+\ No newline at end of file
