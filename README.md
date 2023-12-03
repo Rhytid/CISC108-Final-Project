@@ -40,14 +40,13 @@ Phase 1
       - Fifth Level: Cloud Obstacle
 
 Milestone 1 Progress: https://youtu.be/TAqs9JGkhRY
-Milestone 2 Progress: https://youtu.be/cPYrNH9Ra8I
 
 Phase 2
 - [x] The first level is fully functional
 - [x] The game gets faster as you progress
 - [x] The game can tell when the player collides with obstacles
 
-
+Milestone 2 Progress: https://youtu.be/cPYrNH9Ra8I
 
 Phase 3
 - [x] The game displays points
@@ -57,3 +56,5 @@ Phase 3
 - [x] The amount of balloons that come increase as the player's level increases
 - [x] Have the game display "Game Over" when the player loses
 - [x] Add a background image set for the game
+
+Game Preview: https://www.youtube.com/watch?v=Y1RHnk0HU7E
