@@ -4,7 +4,6 @@ from random import randint
 
 background_image("https://upload.wikimedia.org/wikipedia/commons/7/7a/Pixel_Art_Background.jpg")
 
-
 @dataclass
 class World:
     obstacle_speed: int
