@@ -22,7 +22,7 @@ of the window.
 
 Authors Section:
 Alex Sohn: asohn@udel.edu
-Nareen Sultana: nareen@udel.edu
+Nareen Sulatana: nareen@udel.edu
 
 Achknowledgements:
 https://designer-edu.github.io/designer/
